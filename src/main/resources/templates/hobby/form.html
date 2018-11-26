@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>New Hobby</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${hobby.id == null}">New Hobby</h1>
+		<h1 th:if="${hobby.id != null}">Edit Hobby</h1>
+		<hr />
+		<form th:action="@{/hobbys}" th:method="@{${hobby.id == null} ? 'post' : 'put'}"
+			th:object="${hobby}">
+			<input type="hidden" th:field="*{id}" /> 
+			
+				<div class="form-group"> 
+					<label for="name">Name</label>  
+					<input id="name" name="name" type="text" class="form-control" th:field="*{name}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="description">Description</label>  
+					<input id="description" name="description" type="text" class="form-control" th:field="*{description}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="image">Image</label>  
+					<input id="image" name="image" type="text" class="form-control" th:field="*{image}" />  
+				</div> 
+
+			<button type="submit" class="btn btn-success">Save</button>
+			<a th:href="@{/hobbys}" class="btn btn-default">Back</a>
+		</form>
+	</div>
+</body>
+</html>

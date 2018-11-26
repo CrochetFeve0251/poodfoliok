@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>New Diploma</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${diploma.id == null}">New Diploma</h1>
+		<h1 th:if="${diploma.id != null}">Edit Diploma</h1>
+		<hr />
+		<form th:action="@{/diplomas}" th:method="@{${diploma.id == null} ? 'post' : 'put'}"
+			th:object="${diploma}">
+			<input type="hidden" th:field="*{id}" /> 
+			
+				<div class="form-group"> 
+					<label for="data">Data</label>  
+					<input id="data" name="data" type="text" class="form-control" th:field="*{data}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="name">Name</label>  
+					<input id="name" name="name" type="text" class="form-control" th:field="*{name}" />  
+				</div> 
+
+			<button type="submit" class="btn btn-success">Save</button>
+			<a th:href="@{/diplomas}" class="btn btn-default">Back</a>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>New Project</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${project.id == null}">New Project</h1>
+		<h1 th:if="${project.id != null}">Edit Project</h1>
+		<hr />
+		<form th:action="@{/projects}" th:method="@{${project.id == null} ? 'post' : 'put'}"
+			th:object="${project}">
+			<input type="hidden" th:field="*{id}" /> 
+			
+				<div class="form-group"> 
+					<label for="name">Name</label>  
+					<input id="name" name="name" type="text" class="form-control" th:field="*{name}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="description">Description</label>  
+					<input id="description" name="description" type="text" class="form-control" th:field="*{description}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="start">Start</label>  
+					<input id="start" name="start" type="text" class="form-control" th:field="*{start}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="end">End</label>  
+					<input id="end" name="end" type="text" class="form-control" th:field="*{end}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="link">Link</label>  
+					<input id="link" name="link" type="text" class="form-control" th:field="*{link}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="image">Image</label>  
+					<input id="image" name="image" type="text" class="form-control" th:field="*{image}" />  
+				</div> 
+
+			<button type="submit" class="btn btn-success">Save</button>
+			<a th:href="@{/projects}" class="btn btn-default">Back</a>
+		</form>
+	</div>
+</body>
+</html>

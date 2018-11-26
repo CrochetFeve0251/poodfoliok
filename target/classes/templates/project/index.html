@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h1>List Project</h1>
+		<hr />
+		<a th:href="@{/projects/new}">New Project</a><br/><br/>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th> 
+					<th>Description</th> 
+					<th>Start</th> 
+					<th>End</th> 
+					<th>Link</th> 
+					<th>Image</th> 
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="project : ${listProject}">
+					<td th:text="${project.name}"></td> 
+					<td th:text="${project.description}"></td> 
+					<td th:text="${project.start}"></td> 
+					<td th:text="${project.end}"></td> 
+					<td th:text="${project.link}"></td> 
+					<td th:text="${project.image}"></td> 
+					<td>
+							<a th:href="@{/projects/{id}(id = ${project.id})}">Show</a> 
+					 		<a th:href="@{/projects/{id}/edit(id = ${project.id})}">Edit</a> 
+							<a href="#">Destroy</a> 
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
